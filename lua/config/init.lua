@@ -9,7 +9,7 @@ require("aucmds")
 require("cmds")
 require("keybinds")
 require("lsp")
-require("netrw")
+-- require("netrw") -- supressed
 
 -- restore path
 package.path = old_path
