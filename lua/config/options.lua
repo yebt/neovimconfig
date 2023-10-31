@@ -23,7 +23,8 @@ local configs = {
   smartindent = true,
   --
   cursorline = true,
-  guicursor = "a:block",
+  -- guicursor = "a:block",
+  guicursor = "a:block-cursor",
 
   --
   concealcursor = "nc",
