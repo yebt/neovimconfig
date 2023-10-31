@@ -1,6 +1,6 @@
 local agroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
-local user_cmd = vim.api.nvim_create_user_command
+-- local user_cmd = vim.api.nvim_create_user_command
 
 -- Fucntions
 --------------------------------------------
