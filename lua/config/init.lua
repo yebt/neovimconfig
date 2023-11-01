@@ -9,6 +9,7 @@ require("aucmds")
 require("cmds")
 require("keybinds")
 require("lsp")
+require("status")
 -- require("netrw") -- supressed
 
 -- restore path
@@ -21,7 +22,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
 		-- aditional filetype event on verylazy
 		vim.api.nvim_exec_autocmds("FileType", {})
 
-		require("config.status")
+		-- require("config.status")
 
 		-- Aditional requires
 		--require("locals.statusline")
