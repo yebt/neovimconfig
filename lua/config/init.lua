@@ -11,6 +11,7 @@ require("keybinds")
 require("lsp")
 require("status")
 -- require("netrw") -- supressed
+require("lazyinit")
 
 -- restore path
 package.path = old_path
