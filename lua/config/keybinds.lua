@@ -144,3 +144,11 @@ map({ "n", "x" }, "<leader>h", ":noh<CR>", { silent = true })
 map("t", "<ESC>", "<C-\\><C-n>", { silent = true, desc = "Exit terminal mode" })
 -- Toggler Wrap
 map("n", "<M-z>w", ":set wrap!<CR>", { silent = true })
+
+-- Reemplacer
+map(
+	"n",
+	"<leader>s",
+	":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+	{ desc = "remplace cursor word, in all document" }
+)
