@@ -113,6 +113,8 @@ map("n", "<leader>a", "ggVG", { silent = true, desc = "select all content" })
 map("x", "<leader>p", '"_dP', { silent = true, desc = "Paste without losee content" })
 -- Yank on system clipboard
 map("x", "<leader>y", '"+y', { silent = true, desc = "Copy con clipboard" })
+map("n", "<leader>Y", '"+Y', { silent = true, desc = "Copy con clipboard" })
+map("n", "<leader>yy", '"+yy', { silent = true, desc = "Copy con clipboard" })
 -- Indent
 map("x", "<", "<gv", { silent = true, desc = "Indent -" })
 map("x", ">", ">gv", { silent = true, desc = "Indebt +" })
