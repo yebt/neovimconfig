@@ -94,9 +94,9 @@ local configs = {
   backup = true,
   backupdir = {
     --vim.fn.expand("$XDG_STATE_HOME/nvim/backup//"),
-    vim.fn.stdpath('state') .. '/backup',
+    vim.fn.stdpath("state") .. "/backup",
   },
-  undodir =  vim.fn.stdpath('state') .. '/undo',
+  undodir = vim.fn.stdpath("state") .. "/undo",
   listchars = {
     tab = "▸ ",
     trail = "·",
@@ -166,7 +166,7 @@ local configs = {
   --
   spelllang = "es,en",
   --
-  sessionoptions = 'buffers,curdir,winsize',
+  sessionoptions = "buffers,curdir,winsize",
   --
 }
 
@@ -177,7 +177,7 @@ local globals = {
   loaded_ruby_provider = 0,
   --
   netrw_browse_split = 4,
-  netrw_banner=0,
+  netrw_banner = 0,
   netrw_use_errorwindow = 0,
   netrw_windize = 35,
   netrw_keepdir = 0,

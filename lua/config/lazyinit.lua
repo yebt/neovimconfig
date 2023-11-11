@@ -37,7 +37,7 @@ require("lazy").setup({
     enabled = false,
     notify = true, -- get a notification when changes are found
   },
-    performance = {
+  performance = {
     cache = {
       enabled = true,
     },
@@ -48,14 +48,19 @@ require("lazy").setup({
       paths = {}, -- add any custom paths here that you want to includes in the rtp
       ---@type string[] list any plugins you want to disable here
       disabled_plugins = {
-        -- "gzip",
+        "gzip",
+        "man",
         -- "matchit",
         -- "matchparen",
         -- "netrwPlugin",
-        -- "tarPlugin",
+        "tarPlugin",
         -- "tohtml",
-        -- "tutor",
-        -- "zipPlugin",
+        "tutor",
+        "zipPlugin",
+
+        -- "editorconfig",
+        -- "rplugin",
+        "shada",
       },
     },
   },
