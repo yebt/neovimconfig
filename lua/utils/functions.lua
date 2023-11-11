@@ -69,7 +69,6 @@ M.gotofile_vue = function(fname)
   end
 end
 
-
 --
 -- If is aviable a plugin in lazy plugin manager
 -- @param plugin string name of plugin
