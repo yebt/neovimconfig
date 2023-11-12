@@ -9,7 +9,7 @@ require("aucmds")
 require("cmds")
 require("keybinds")
 require("lsp")
-require("status")
+-- require("status")
 -- require("netrw") -- supressed
 require("lazyinit")
 
