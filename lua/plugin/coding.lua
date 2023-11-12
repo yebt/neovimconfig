@@ -10,12 +10,12 @@ return {
 
   -- Split and Join
   {
-    'echasnovski/mini.splitjoin',
+    "echasnovski/mini.splitjoin",
     version = false,
     config = require("plugin.config.mini_splitjoin"),
-    keys={
-      {"gS"}
-    }
+    keys = {
+      { "gS" },
+    },
   },
 
   -- Tabular
@@ -24,6 +24,23 @@ return {
     cmd = "Tabularize",
     -- /,/r1c1l0
     -- https://devhints.io/tabular
-  }
+  },
 
+  {
+    "windwp/nvim-autopairs",
+    -- event = {"InsertEnter"},
+    keys = {
+      { "(", mode = "i" },
+      { ")", mode = "i" },
+      { "[", mode = "i" },
+      { "]", mode = "i" },
+      { "{", mode = "i" },
+      { "}", mode = "i" },
+      { "'", mode = "i" },
+      { '"', mode = "i" },
+      { '>', mode = "i" },
+      { '<', mode = "i" },
+    },
+    config = require("plugin.config.nvim_autopairs")
+  },
 }
