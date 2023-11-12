@@ -15,11 +15,16 @@ return {
   },
 
   -- which key
+  -- {
+  --   'echasnovski/mini.clue',
+  --   version = false,
+  --   lazy=false,
+  --   config = require("plugin.config.mini_clue")
+  -- },
   {
-    'echasnovski/mini.clue',
-    version = false,
-    lazy=false,
-    config = require("plugin.config.mini_clue")
+    "folke/which-key.nvim",
+    lazy = false,
+    config = require("plugin.config.wich_key"),
   },
 
 }
