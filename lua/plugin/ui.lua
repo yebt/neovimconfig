@@ -2,6 +2,8 @@
 return {
 
   -- Better simple ui 
+  --
+  { "MunifTanjim/nui.nvim" },
   {
     "stevearc/dressing.nvim",
     init = function()
@@ -32,5 +34,12 @@ return {
     main = "ibl",
     event="VeryLazy",
     config = require("plugin.config.indent_blankline")
-  }
+  },
+
+  -- Statusline
+  {
+    "sontungexpt/sttusline",
+    event={"VeryLazy", "BufEnter"},
+    config = require("plugin.config.sttusline")
+  },
 }
