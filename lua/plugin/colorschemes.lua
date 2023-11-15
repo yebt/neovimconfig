@@ -1,5 +1,6 @@
 -- this contain the colorschemes to download
 return {
+  --
   {
     "oxfist/night-owl.nvim",
     -- lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -9,6 +10,7 @@ return {
     --   vim.cmd.colorscheme("night-owl")
     -- end
   },
+  --
   {
     "zootedb0t/citruszest.nvim",
     -- init = function()
@@ -16,6 +18,7 @@ return {
     --   vim.g.walo_colorscheme_name = "citruszest"
     -- end
   },
+  --
   {
     "sainnhe/gruvbox-material",
     init = function()
@@ -44,12 +47,13 @@ return {
       vim.g.gruvbox_material_better_performance = 1
     end,
   },
+  --
   {
     "navarasu/onedark.nvim",
-    init = function()
-      -- vim.g.walo_colorscheme_plugin = "onedark.nvim"
-      -- vim.g.walo_colorscheme_name = "onedark"
-    end,
+    -- init = function()
+    --   vim.g.walo_colorscheme_plugin = "onedark.nvim"
+    --   vim.g.walo_colorscheme_name = "onedark"
+    -- end,
     opts = {
       style = "warmer", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
       transparent = false, -- Show/hide background
@@ -89,6 +93,7 @@ return {
       },
     },
   },
+  --
   {
     "nyoom-engineering/oxocarbon.nvim",
     -- init = function()
@@ -96,11 +101,19 @@ return {
     --   vim.g.walo_colorscheme_name = "oxocarbon"
     -- end,
   },
+  --
   {
     "folke/tokyonight.nvim",
+    -- init = function()
+    --   vim.g.walo_colorscheme_plugin = "tokyonight.nvim"
+    --   vim.g.walo_colorscheme_name = "tokyonight-night"
+    -- end,
+  },
+  {
+    "craftzdog/solarized-osaka.nvim",
     init = function()
-      vim.g.walo_colorscheme_plugin = "tokyonight.nvim"
-      vim.g.walo_colorscheme_name = "tokyonight-night"
-    end,
+      vim.g.walo_colorscheme_plugin = "solarized-osaka.nvim"
+      vim.g.walo_colorscheme_name = "solarized-osaka"
+    end
   }
 }
