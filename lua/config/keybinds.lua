@@ -112,9 +112,9 @@ map("n", "<leader>a", "ggVG", { silent = true, desc = "select all content" })
 -- Paste witouth lost the primary register
 map("x", "<leader>p", '"_dP', { silent = true, desc = "Paste without losee content" })
 -- Yank on system clipboard
-map("x", "<leader>y", '"+y', { silent = true, desc = "Copy con clipboard" })
-map("n", "<leader>Y", '"+Y', { silent = true, desc = "Copy con clipboard" })
-map("n", "<leader>yy", '"+yy', { silent = true, desc = "Copy con clipboard" })
+map("x", "<leader>y", '"+y', { silent = true, desc = "Copy selection insude clipboard" })
+map("n", "<leader>Y", '"+y$', { silent = true, desc = "Copy from position forward" })
+map("n", "<leader>yy", '"+yy', { silent = true, desc = "Copy the lines" })
 -- Indent
 map("x", "<", "<gv", { silent = true, desc = "Indent -" })
 map("x", ">", ">gv", { silent = true, desc = "Indebt +" })
@@ -144,8 +144,6 @@ map("n", "\\", toggleNetrw, { silent = true, desc = "Toggle netrw" })
 map({ "n", "x" }, "<leader>h", ":noh<CR>", { silent = true, desc = "Toggle highlight of search" })
 -- Terminal esc
 map("t", "<ESC>", "<C-\\><C-n>", { silent = true, desc = "Exit terminal mode" })
--- Toggler Wrap
-map("n", "<M-z>w", ":set wrap!<CR>", { silent = true, desc = "Toggle wrap" })
 
 -- Reemplacer
 map(
@@ -154,3 +152,27 @@ map(
   ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
   { desc = "remplace cursor word, in all document" }
 )
+
+-- Toggler Wrap
+map("n", "<M-z>w", ":set wrap!<CR>", { silent = true, desc = "Toggle wrap" })
+
+-- Toggler indentation  sistem
+map("n", "<M-z>t", function()
+  vim.ui.select({ "Tabs", "Spaces" }, {
+    prompt = "Title",
+  }, function(indent_type)
+    if indent_type then
+      vim.ui.input({ prompt = "Enter value: " }, function(input)
+        if input then
+          local ninput = tonumber(input)
+          vim.o.expandtab = indent_type == "Spaces"
+          vim.o.tabstop = ninput
+          vim.o.shiftwidth = ninput
+          vim.o.softtabstop = ninput
+          vim.cmd("retab! " .. ninput)
+        end
+      end)
+    end
+  end)
+end, { desc = "Change indentation" })
+----
