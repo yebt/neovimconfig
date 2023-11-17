@@ -1,19 +1,19 @@
-local default = "habamax"
+-- local default = "habamax"
 
-local plugin = vim.g.walo_colorscheme_plugin or "night-owl.nvim"
-local colorscheme = vim.g.walo_colorscheme_name or "night-owl"
--- local colorscheme = "vitesseo"
-local is_available = require("utils.functions").is_available
+-- local plugin = vim.g.walo_colorscheme_plugin or "night-owl.nvim"
+-- local colorscheme = vim.g.walo_colorscheme_name or "night-owl"
+-- -- local colorscheme = "vitesseo"
+-- local is_available = require("utils.functions").is_available
 
-local selected_colorscheme = is_available(plugin) and colorscheme or default
+-- local selected_colorscheme = is_available(plugin) and colorscheme or default
 
-local ok, cllbck = pcall(require, "plugin.config." .. selected_colorscheme)
+-- local ok, cllbck = pcall(require, "plugin.config." .. selected_colorscheme)
 
-if ok then
-  cllbck()
-end
+-- if ok then
+--   cllbck()
+-- end
 
-vim.cmd.colorscheme(selected_colorscheme)
+-- vim.cmd.colorscheme(selected_colorscheme)
 
 
 

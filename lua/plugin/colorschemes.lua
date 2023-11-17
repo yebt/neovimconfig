@@ -13,10 +13,8 @@ return {
   --
   {
     "zootedb0t/citruszest.nvim",
-    -- init = function()
     --   vim.g.walo_colorscheme_plugin = "citruszest.nvim"
     --   vim.g.walo_colorscheme_name = "citruszest"
-    -- end
   },
   --
   {
@@ -104,16 +102,15 @@ return {
   --
   {
     "folke/tokyonight.nvim",
-    -- init = function()
-    --   vim.g.walo_colorscheme_plugin = "tokyonight.nvim"
-    --   vim.g.walo_colorscheme_name = "tokyonight-night"
-    -- end,
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = require("plugin.config.tokyonight")
   },
   {
     "craftzdog/solarized-osaka.nvim",
-    init = function()
-      vim.g.walo_colorscheme_plugin = "solarized-osaka.nvim"
-      vim.g.walo_colorscheme_name = "solarized-osaka"
-    end
+    -- init = function()
+    --   vim.g.walo_colorscheme_plugin = "solarized-osaka.nvim"
+    --   vim.g.walo_colorscheme_name = "solarized-osaka"
+    -- end
   }
 }
