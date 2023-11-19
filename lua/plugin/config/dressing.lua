@@ -1,5 +1,4 @@
 return function()
-
   local options = {
     input = {
       -- Set to false to disable the vim.ui.input implementation
@@ -70,7 +69,7 @@ return function()
 
       -- Priority list of preferred vim.select implementations
       -- backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
-      backend = {"nui"},
+      backend = { "nui" },
 
       -- Trim trailing `:` from prompt
       trim_prompt = true,
@@ -164,5 +163,5 @@ return function()
     },
   }
 
-  require('dressing').setup(options)
+  require("dressing").setup(options)
 end

@@ -59,7 +59,7 @@ autocmd({ "VimEnter" }, {
       return
     end
     --require("alpha").start(true, require("alpha").default_config)
-    require('mini.starter')
+    require("mini.starter")
     MiniStarter.open()
 
     -- Job:new({

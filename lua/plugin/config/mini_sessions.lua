@@ -27,5 +27,5 @@ return function()
     -- -- Whether to print session path after action
     -- verbose = { read = false, write = true, delete = true },
   }
-  require('mini.sessions').setup(opts)
+  require("mini.sessions").setup(opts)
 end

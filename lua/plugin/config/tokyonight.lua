@@ -12,7 +12,7 @@ return function()
       -- Value is any valid attr-list value for `:help nvim_set_hl`
       comments = { italic = true },
       keywords = { italic = true },
-      functions = { bold= true},
+      functions = { bold = true },
       variables = {},
       -- Background styles. Can be "dark", "transparent" or "normal"
       sidebars = "dark", -- style for sidebars, see below
@@ -30,7 +30,6 @@ return function()
     on_colors = function(colors)
       -- colors.hint = colors.orange
       -- colors.error = "#ff0000"
-
     end,
 
     --- You can override specific highlights to use other groups or a hex color
@@ -42,5 +41,5 @@ return function()
 
   tkn.setup(opts)
 
-  vim.cmd[[colorscheme tokyonight]]
+  vim.cmd([[colorscheme tokyonight]])
 end

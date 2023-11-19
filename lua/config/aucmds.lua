@@ -22,9 +22,11 @@ end
 vim.on_key(function(char)
   if vim.fn.mode() == "n" then
     local new_hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/" }, vim.fn.keytrans(char))
-    if vim.opt.hlsearch:get() ~= new_hlsearch then vim.opt.hlsearch = new_hlsearch end
+    if vim.opt.hlsearch:get() ~= new_hlsearch then
+      vim.opt.hlsearch = new_hlsearch
+    end
   end
-end, vim.api.nvim_create_namespace "auto_hlsearch")
+end, vim.api.nvim_create_namespace("auto_hlsearch"))
 
 -- Autocommands
 --------------------------------------------
@@ -34,12 +36,11 @@ end, vim.api.nvim_create_namespace "auto_hlsearch")
 autocmd("FileType", {
   desc = "Unlist quickfist buffers",
   group = agroup("_unlist_quickfist", { clear = true }),
-  pattern = {"qf", "starter"},
+  pattern = { "qf", "starter" },
   callback = function()
     vim.opt_local.buflisted = false
   end,
 })
-
 
 -- Quick close
 autocmd("FileType", {

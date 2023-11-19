@@ -104,7 +104,7 @@ return {
     "folke/tokyonight.nvim",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
-    config = require("plugin.config.tokyonight")
+    config = require("plugin.config.tokyonight"),
   },
   {
     "craftzdog/solarized-osaka.nvim",
@@ -112,5 +112,5 @@ return {
     --   vim.g.walo_colorscheme_plugin = "solarized-osaka.nvim"
     --   vim.g.walo_colorscheme_name = "solarized-osaka"
     -- end
-  }
+  },
 }

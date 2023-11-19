@@ -1,7 +1,7 @@
 -- The UI plugins to improve the ui experience
 return {
 
-  -- Better simple ui 
+  -- Better simple ui
   --
   { "MunifTanjim/nui.nvim" },
   {
@@ -18,7 +18,7 @@ return {
         return vim.ui.input(...)
       end
     end,
-    config = require("plugin.config.dressing")
+    config = require("plugin.config.dressing"),
   },
 
   -- Mini indent scope
@@ -32,14 +32,14 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    event="VeryLazy",
-    config = require("plugin.config.indent_blankline")
+    event = "VeryLazy",
+    config = require("plugin.config.indent_blankline"),
   },
 
   -- Statusline
   {
     "sontungexpt/sttusline",
-    event={"VeryLazy", "BufEnter"},
-    config = require("plugin.config.sttusline")
+    event = { "VeryLazy", "BufEnter" },
+    config = require("plugin.config.sttusline"),
   },
 }

@@ -5,18 +5,19 @@ return {
   {
     "ibhagwan/fzf-lua",
     dependencies = {
-       "junegunn/fzf", build = "./install --bin" 
+      "junegunn/fzf",
+      build = "./install --bin",
     },
-    cmd ={
-      "FzfLua"
-    }
+    cmd = {
+      "FzfLua",
+    },
   },
 
   -- fzf vim
   -- {
   --   "junegunn/fzf.vim",
   --   dependencies = {
-  --      "junegunn/fzf", build = "./install --bin" 
+  --      "junegunn/fzf", build = "./install --bin"
   --   },
   --   cmd = {
   --     "Files"
@@ -43,7 +44,6 @@ return {
       {";"},
       {","},
     },
-    config = require("plugin.config.flash_nvim")
-
-  }
+    config = require("plugin.config.flash_nvim"),
+  },
 }

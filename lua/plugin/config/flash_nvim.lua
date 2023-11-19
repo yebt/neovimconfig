@@ -1,4 +1,4 @@
-return  function()
+return function()
   local opts = {
     -- labels = "abcdefghijklmnopqrstuvwxyz",
     labels = "asdfghjklqwertyuiopzxcvbnm",
@@ -160,9 +160,9 @@ return  function()
           -- disable jump labels when not enabled, when using a count,
           -- or when recording/executing registers
           opts.jump_labels = opts.jump_labels
-          and vim.v.count == 0
-          and vim.fn.reg_executing() == ""
-          and vim.fn.reg_recording() == ""
+            and vim.v.count == 0
+            and vim.fn.reg_executing() == ""
+            and vim.fn.reg_recording() == ""
 
           -- Show jump labels only in operator-pending mode
           -- opts.jump_labels = vim.v.count == 0 and vim.fn.mode(true):find("o")

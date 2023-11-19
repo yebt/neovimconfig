@@ -5,6 +5,6 @@ return {
   -- devicons
   {
     "nvim-tree/nvim-web-devicons",
-    config = require("plugin.config.nvim-web-devicons")
+    config = require("plugin.config.nvim-web-devicons"),
   },
 }

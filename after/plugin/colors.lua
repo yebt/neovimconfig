@@ -15,17 +15,15 @@
 
 -- vim.cmd.colorscheme(selected_colorscheme)
 
-
-
-  -- hl(0, "GitSignsAdd", { fg = c.sign_add, bg = 'NONE' })
-  -- hl(0, "GitSignsChange", { fg = c.sign_change, bg = 'NONE' })
-  -- hl(0, "GitSignsDelete", { fg = c.sign_delete, bg = 'NONE' })
-  -- hl(0, "GitSignsChangedelete", { fg = c.sign_change, bg = 'NONE' })
-  -- hl(0, "GitSignsCurrentLineBlame", { fg = c.gray3, bg = 'NONE' })
-  -- hl(0, "GitGutterAdd", { fg = c.sign_add, bg = 'NONE' })
-  -- hl(0, "GitGutterChange", { fg = c.sign_change, bg = 'NONE' })
-  -- hl(0, "GitGutterDelete", { fg = c.sign_delete, bg = 'NONE' })
-  -- hl(0, "GitGutterChangeDelete", { fg = c.sign_change, bg = 'NONE' })
+-- hl(0, "GitSignsAdd", { fg = c.sign_add, bg = 'NONE' })
+-- hl(0, "GitSignsChange", { fg = c.sign_change, bg = 'NONE' })
+-- hl(0, "GitSignsDelete", { fg = c.sign_delete, bg = 'NONE' })
+-- hl(0, "GitSignsChangedelete", { fg = c.sign_change, bg = 'NONE' })
+-- hl(0, "GitSignsCurrentLineBlame", { fg = c.gray3, bg = 'NONE' })
+-- hl(0, "GitGutterAdd", { fg = c.sign_add, bg = 'NONE' })
+-- hl(0, "GitGutterChange", { fg = c.sign_change, bg = 'NONE' })
+-- hl(0, "GitGutterDelete", { fg = c.sign_delete, bg = 'NONE' })
+-- hl(0, "GitGutterChangeDelete", { fg = c.sign_change, bg = 'NONE' })
 
 -- vim.api.nvim_create_autocmd("ColorScheme", {
 --   pattern = "*",

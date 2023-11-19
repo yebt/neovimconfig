@@ -38,9 +38,9 @@ return {
       { "}", mode = "i" },
       { "'", mode = "i" },
       { '"', mode = "i" },
-      { '>', mode = "i" },
-      { '<', mode = "i" },
+      { ">", mode = "i" },
+      { "<", mode = "i" },
     },
-    config = require("plugin.config.nvim_autopairs")
+    config = require("plugin.config.nvim_autopairs"),
   },
 }
