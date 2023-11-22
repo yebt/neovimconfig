@@ -4,6 +4,7 @@ return {
   {
     "echasnovski/mini.completion",
     version = false,
+    lazy=false,
     event = "InsertEnter",
     config = require("plugin.config.mini_completion"),
   },
