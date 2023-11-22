@@ -14,22 +14,23 @@ return function()
     },
 
     -- Way of how module does LSP completion
-    lsp_completion = {
-      -- `source_func` should be one of 'completefunc' or 'omnifunc'.
-      source_func = "completefunc",
-      -- source_func = "omnifunc",
+    lsp_completion = {source_func = 'omnifunc', auto_setup = false},
+    -- lsp_completion = {
+    --   -- `source_func` should be one of 'completefunc' or 'omnifunc'.
+    --   -- source_func = "completefunc",
+    --   source_func = "omnifunc",
 
-      -- `auto_setup` should be boolean indicating if LSP completion is set up
-      -- on every `BufEnter` event.
-      auto_setup = true,
+    --   -- `auto_setup` should be boolean indicating if LSP completion is set up
+    --   -- on every `BufEnter` event.
+    --   auto_setup = true,
 
-      -- `process_items` should be a function which takes LSP
-      -- 'textDocument/completion' response items and word to complete. Its
-      -- output should be a table of the same nature as input items. The most
-      -- common use-cases are custom filtering and sorting. You can use
-      -- default `process_items` as `MiniCompletion.default_process_items()`.
-      -- process_items = --<function: filters out snippets; sorts by LSP specs>,
-    },
+    --   -- `process_items` should be a function which takes LSP
+    --   -- 'textDocument/completion' response items and word to complete. Its
+    --   -- output should be a table of the same nature as input items. The most
+    --   -- common use-cases are custom filtering and sorting. You can use
+    --   -- default `process_items` as `MiniCompletion.default_process_items()`.
+    --   -- process_items = --<function: filters out snippets; sorts by LSP specs>,
+    -- },
 
     -- Fallback action. It will always be run in Insert mode. To use Neovim's
     -- built-in completion (see `:h ins-completion`), supply its mapping as
@@ -45,7 +46,7 @@ return function()
 
     -- Whether to set Vim's settings for better experience (modifies
     -- `shortmess` and `completeopt`)
-    set_vim_settings = truew,
+    set_vim_settings = true,
   }
 
   require("mini.completion").setup(opts)
