@@ -6,5 +6,7 @@ return {
     lazy = false,
     -- event = "VeryLazy",
     config = require("plugin.config.lsp")
-  }
+  },
+
+
 }
