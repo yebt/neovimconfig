@@ -1,3 +1,9 @@
+--------------
+--- VARS
+---
+local api = vim.api
+local util = vim.lsp.util
+local kmset = vim.keymap.set
 --
 
 local function has_capability(capability, filter)
@@ -37,10 +43,124 @@ local function del_buffer_autocmd(augroup, bufnr)
   end
 end
 
+--------------
+--- FORMAT
+---
+local function overwrite_format2(options)
+  options = options or {}
+  local bufnr = options.bufnr or api.nvim_get_current_buf()
+  local method = 'textDocument/formatting'
+  local clients = vim.lsp.get_active_clients({
+    id = options.id,
+    bufnr = bufnr,
+    name = options.name,
+    method = method,
+  })
+
+  if options.filter then
+    clients = vim.tbl_filter(options.filter, clients)
+  end
+  -- filer if client.server_capabilities.documentFormattingProvider
+  clients = vim.tbl_filter(function(client)
+    return client.server_capabilities.documentFormattingProvider
+  end, clients)
+
+  if #clients == 0 then
+    vim.notify('[LSP] Format request failed, no matching language servers.')
+  end
+
+  local copyClient = vim.deepcopy(clients)
+  table.insert(copyClient, { name = 'all' })
+  table.insert(copyClient, { name = 'Set default formatter' })
+
+  --@private
+  local function applyFormat(clientsi)
+    if options.async then
+      local do_format
+      do_format = function(idx, client)
+        if not client then
+          return
+        end
+        -- local params = set_range(client, util.make_formatting_params(options.formatting_options))
+        local params = util.make_formatting_params(options.formatting_options)
+        client.request(method, params, function(...)
+          local handler = client.handlers[method] or vim.lsp.handlers[method]
+          handler(...)
+          do_format(next(clientsi, idx))
+        end, bufnr)
+      end
+      do_format(next(clientsi))
+    else
+      local timeout_ms = options.timeout_ms or 1000
+      for _, client in pairs(clientsi) do
+        local params = util.make_formatting_params(options.formatting_options)
+        local result, err = client.request_sync(method, params, timeout_ms, bufnr)
+        if result and result.result then
+          util.apply_text_edits(result.result, bufnr, client.offset_encoding)
+        end
+        if err then
+          vim.notify(string.format('[LSP][%s] %s', client.name, err), vim.log.levels.WARN)
+        end
+      end
+    end
+  end
+
+  -- check if formatter is set
+  if vim.g.defaultFormatClient then
+    -- check if formatter is in list
+    for _, client in pairs(clients) do
+      if client.name == vim.g.defaultFormatClient then
+        applyFormat({ client })
+        return
+      end
+    end
+    vim.notify('Default Formatter not found: ' .. vim.g.defaultFormatClient)
+  end
+
+  if #clients > 1 then
+    vim.ui.select(copyClient, {
+      prompt = 'Select a formatter:',
+      format_item = function(item)
+        return item.name
+      end,
+    }, function(choice)
+      if not choice then
+        vim.notify('No formatter selected')
+      elseif choice.name == 'all' then
+        applyFormat(clients)
+      elseif choice.name == 'Set default formatter' then
+        vim.ui.select(clients, {
+          prompt = 'Select a formatter:',
+          format_item = function(item)
+            return item.name
+          end,
+        }, function(choicei)
+          if not choicei then
+            vim.notify('No formatter selected')
+          else
+            vim.notify('Set default formatter:' .. choicei.name)
+            vim.g.defaultFormatClient = choicei.name
+            applyFormat({ choicei })
+          end
+        end)
+      elseif choice then
+        applyFormat({ choice })
+      end
+    end)
+  else
+    applyFormat(clients)
+  end
+end
+
+--------------
+--- SETTINGS
+---
 ------------
 vim.diagnostic.config({
   update_in_insert = true,
-
+  underline = true,
+  virtual_text = true,
+  signs = true,
   float = {
     focused = false,
     style = "minimal",
@@ -50,3 +170,16 @@ vim.diagnostic.config({
     prefix = "",
   },
 })
+
+--------------
+--- GLOBAL MAPS
+---
+kmset('n', '<leader>e', vim.diagnostic.open_float, { silent = true, desc = 'LSP: Open diagnostic float' })
+kmset('n', '[d', vim.diagnostic.goto_prev, { silent = true, desc = 'LSP: Go to previous diagnostic' })
+kmset('n', ']d', vim.diagnostic.goto_next, { silent = true, desc = 'LSP: Go to next diagnostic' })
+-- kmset("n", "<leader>E", vim.diagnostic.setloclist, { silent = true, desc = "Set loclist" })
+kmset('n', '<leader>E', ':TroubleToggle document_diagnostics<CR>', { silent = true, desc = 'LSP: Set loclist' })
+
+--------------
+--- AUTOCMD
+---
