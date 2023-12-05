@@ -14,8 +14,8 @@ local function has_capability(capability, filter)
   end
   return false
 end
--- 
--- 
+--
+--
 local function add_buffer_autocmd(augroup, bufnr, autocmds)
   if not vim.tbl_islist(autocmds) then
     autocmds = { autocmds }
@@ -49,7 +49,7 @@ end
 local function overwrite_format2(options)
   options = options or {}
   local bufnr = options.bufnr or api.nvim_get_current_buf()
-  local method = 'textDocument/formatting'
+  local method = "textDocument/formatting"
   local clients = vim.lsp.get_active_clients({
     id = options.id,
     bufnr = bufnr,
@@ -66,12 +66,12 @@ local function overwrite_format2(options)
   end, clients)
 
   if #clients == 0 then
-    vim.notify('[LSP] Format request failed, no matching language servers.')
+    vim.notify("[LSP] Format request failed, no matching language servers.")
   end
 
   local copyClient = vim.deepcopy(clients)
-  table.insert(copyClient, { name = 'all' })
-  table.insert(copyClient, { name = 'Set default formatter' })
+  table.insert(copyClient, { name = "all" })
+  table.insert(copyClient, { name = "Set default formatter" })
 
   --@private
   local function applyFormat(clientsi)
@@ -99,7 +99,7 @@ local function overwrite_format2(options)
           util.apply_text_edits(result.result, bufnr, client.offset_encoding)
         end
         if err then
-          vim.notify(string.format('[LSP][%s] %s', client.name, err), vim.log.levels.WARN)
+          vim.notify(string.format("[LSP][%s] %s", client.name, err), vim.log.levels.WARN)
         end
       end
     end
@@ -114,31 +114,31 @@ local function overwrite_format2(options)
         return
       end
     end
-    vim.notify('Default Formatter not found: ' .. vim.g.defaultFormatClient)
+    vim.notify("Default Formatter not found: " .. vim.g.defaultFormatClient)
   end
 
   if #clients > 1 then
     vim.ui.select(copyClient, {
-      prompt = 'Select a formatter:',
+      prompt = "Select a formatter:",
       format_item = function(item)
         return item.name
       end,
     }, function(choice)
       if not choice then
-        vim.notify('No formatter selected')
-      elseif choice.name == 'all' then
+        vim.notify("No formatter selected")
+      elseif choice.name == "all" then
         applyFormat(clients)
-      elseif choice.name == 'Set default formatter' then
+      elseif choice.name == "Set default formatter" then
         vim.ui.select(clients, {
-          prompt = 'Select a formatter:',
+          prompt = "Select a formatter:",
           format_item = function(item)
             return item.name
           end,
         }, function(choicei)
           if not choicei then
-            vim.notify('No formatter selected')
+            vim.notify("No formatter selected")
           else
-            vim.notify('Set default formatter:' .. choicei.name)
+            vim.notify("Set default formatter:" .. choicei.name)
             vim.g.defaultFormatClient = choicei.name
             applyFormat({ choicei })
           end
@@ -174,22 +174,21 @@ vim.diagnostic.config({
 --------------
 --- GLOBAL MAPS
 ---
-kmset('n', '<leader>e', vim.diagnostic.open_float, { silent = true, desc = 'LSP: Open diagnostic float' })
-kmset('n', '[d', vim.diagnostic.goto_prev, { silent = true, desc = 'LSP: Go to previous diagnostic' })
-kmset('n', ']d', vim.diagnostic.goto_next, { silent = true, desc = 'LSP: Go to next diagnostic' })
+kmset("n", "<leader>e", vim.diagnostic.open_float, { silent = true, desc = "LSP: Open diagnostic float" })
+kmset("n", "[d", vim.diagnostic.goto_prev, { silent = true, desc = "LSP: Go to previous diagnostic" })
+kmset("n", "]d", vim.diagnostic.goto_next, { silent = true, desc = "LSP: Go to next diagnostic" })
 -- kmset("n", "<leader>E", vim.diagnostic.setloclist, { silent = true, desc = "Set loclist" })
-kmset('n', '<leader>E', ':TroubleToggle document_diagnostics<CR>', { silent = true, desc = 'LSP: Set loclist' })
+kmset("n", "<leader>E", ":TroubleToggle document_diagnostics<CR>", { silent = true, desc = "LSP: Set loclist" })
 
 --------------
 --- AUTOCMD
 ---
-vim.api.nvim_create_autocmd('LspAttach', {
-  group =vim.api.nvim_create_augroup('_UserLspAttachConfig',{}),
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("_UserLspAttachConfig", {}),
   callback = function(env)
-
     --- VARS
     local bufnr = env.buf
-    local clientAttached  = vim.lsp.get_client_by_id(env.data.client_id)
+    local clientAttached = vim.lsp.get_client_by_id(env.data.client_id)
     --- CONFIGS
     if clientAttached.server_capabilities.completionProvider then
       vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -200,12 +199,49 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     --- MAPS
     vim.keymap.set(
-    'n',
-    '<leader>ca',
-    ':Lspsaga code_action<CR>',
-    { silent = true, buffer = bufnr, desc = 'LSP: Code action' }
+      "n",
+      "<leader>ca",
+      ":Lspsaga code_action<CR>",
+      { silent = true, buffer = bufnr, desc = "LSP: Code action" }
     )
-
-  end
+  end,
 })
 
+-- vim.api.nvim_create_autocmd('LspNotify', {
+--   callback = function(args)
+--     local bufnr = args.buf
+--     local client_id = args.data.client_id
+--     local method = args.data.method
+--     local params = args.data.params
+--     -- do something with the notification
+--     if method == 'textDocument/...' then
+--       update_buffer(bufnr)
+--     end
+--   end,
+-- })
+
+-- vim.opt.cmdheight = 3
+
+-- vim.api.nvim_create_autocmd('LspRequest', {
+--   callback = function(args)
+--     local bufnr = args.buf
+--     local client_id = args.data.client_id
+--     local request_id = args.data.request_id
+--     local request = args.data.request
+--     if request.type == 'pending' then
+--       -- do something with pending requests
+--       -- track_pending(client_id, bufnr, request_id, request)
+--       -- vim.notify('Pending request: ' .. request.method)
+--     elseif request.type == 'cancel' then
+--       -- do something with pending cancel requests
+--       -- track_canceling(client_id, bufnr, request_id, request)
+--       -- vim.notify('Canceling request: ' .. request.method)
+--     elseif request.type == 'complete' then
+--       -- do something with finished requests. this pending
+--       -- request entry is about to be removed since it is complete
+--       -- track_finish(client_id, bufnr, request_id, request)
+--       -- vim.notify('Finished request: ' .. request.method)
+--     end
+--     vim.notify(vim.inspect(vim.lsp.status()))
+--   end,
+-- })
