@@ -19,7 +19,7 @@ NewComponent.set_lazy(true)
 -- After set_config, the config will be available in the component
 -- You can access the config by NewComponent.get_config()
 NewComponent.set_config({
-	style = "default",
+  style = "default",
 })
 
 -- The number of spaces to add before and after the component
@@ -70,18 +70,18 @@ NewComponent.set_colors({}) -- { fg = colors.set_black, bg = colors.set_white }
 -- NewComponent.set_update(function() return { "string1", "string2" } end)
 -- NewComponent.set_update(function() return { { "string1", {fg = "#000000", bg ="#fdfdfd"} },  "string3", "string4" } end)
 NewComponent.set_update(function()
-	local style = NewComponent.get_config().style
-	local fmt = style
-	if style == "default" then
-		fmt = "%A, %B %d | %H.%M"
-	elseif style == "us" then
-		fmt = "%m/%d/%Y"
-	elseif style == "uk" then
-		fmt = "%d/%m/%Y"
-	elseif style == "iso" then
-		fmt = "%Y-%m-%d"
-	end
-	return os.date(fmt) .. ""
+  local style = NewComponent.get_config().style
+  local fmt = style
+  if style == "default" then
+    fmt = "%A, %B %d | %H.%M"
+  elseif style == "us" then
+    fmt = "%m/%d/%Y"
+  elseif style == "uk" then
+    fmt = "%d/%m/%Y"
+  elseif style == "iso" then
+    fmt = "%Y-%m-%d"
+  end
+  return os.date(fmt) .. ""
 end)
 
 -- The function will call when the component is highlight
@@ -90,7 +90,7 @@ NewComponent.set_onhighlight(function() end)
 -- The function will return the condition to display the component when the component is update
 -- Must return a boolean
 NewComponent.set_condition(function()
-	return true
+  return true
 end)
 
 -- The function will call on the first time component load

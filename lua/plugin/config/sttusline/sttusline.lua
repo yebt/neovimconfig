@@ -3,9 +3,9 @@ return function()
 
   local Datetime = require("sttusline.component").new()
 
-  Datetime.set_config {
+  Datetime.set_config({
     style = "default",
-  }
+  })
 
   Datetime.set_timing(true)
 
@@ -23,7 +23,6 @@ return function()
     end
     return os.date(fmt) .. ""
   end)
-
 
   local opts = {
     -- statusline_color = "#000000",

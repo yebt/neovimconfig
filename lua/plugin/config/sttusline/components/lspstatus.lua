@@ -3,13 +3,16 @@ local StatuslineComponent = require("sttusline.component").new()
 
 -- The component will be update when the event is triggered
 -- To disable default event, set NewComponent.set_event = {}
-StatuslineComponent.set_event {
-	'LspNotify', 'LspAttach', 'LspProgress', 'VimEnter'
-}
+StatuslineComponent.set_event({
+  "LspNotify",
+  "LspAttach",
+  "LspProgress",
+  "VimEnter",
+})
 
 -- The component will be update when the user event is triggered
 -- To disable default user_event, set NewComponent.set_user_event = {}
-StatuslineComponent.set_user_event { "VeryLazy", "LspUpdate" }
+StatuslineComponent.set_user_event({ "VeryLazy", "LspUpdate" })
 
 -- The component will be update every time interval
 StatuslineComponent.set_timing(false)
@@ -20,7 +23,7 @@ StatuslineComponent.set_lazy(true)
 -- The config of the component
 -- After set_config, the config will be available in the component
 -- You can access the config by NewComponent.get_config()
-StatuslineComponent.set_config {}
+StatuslineComponent.set_config({})
 
 -- The number of spaces to add before and after the component
 StatuslineComponent.set_padding(1)
@@ -63,27 +66,27 @@ StatuslineComponent.set_padding(1)
 --     },
 -- }
 
-StatuslineComponent.set_colors {} -- { fg = colors.set_black, bg = colors.set_white }
+StatuslineComponent.set_colors({}) -- { fg = colors.set_black, bg = colors.set_white }
 
 -- The function will return the value of the component to display on the statusline(required).
 -- Must return a string or a table of string or a table of  { "string", { fg = "color", bg = "color" } }
 -- NewComponent.set_update(function() return { "string1", "string2" } end)
 -- NewComponent.set_update(function() return { { "string1", {fg = "#000000", bg ="#fdfdfd"} },  "string3", "string4" } end)
 StatuslineComponent.set_update(function()
-	vim.notify(vim.inspect(vim.lsp.status()))
-	return 'Status'
+  vim.notify(vim.inspect(vim.lsp.status()))
+  return "Status"
 end)
-
 
 -- The function will call when the component is highlight
 StatuslineComponent.set_onhighlight(function() end)
 
 -- The function will return the condition to display the component when the component is update
 -- Must return a boolean
-StatuslineComponent.set_condition(function() return true end)
+StatuslineComponent.set_condition(function()
+  return true
+end)
 
 -- The function will call on the first time component load
 StatuslineComponent.set_onload(function() end)
-
 
 return StatuslineComponent
