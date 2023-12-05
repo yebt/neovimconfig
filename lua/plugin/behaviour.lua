@@ -32,10 +32,10 @@ return {
             local basename = cwd:match("[^/]+$")
             local path = cwd:gsub("/", "%%")
             local session_name = basename .. " (" .. path .. ")"
-            local session_opts = {verbose = {write = false}}
+            local session_opts = { verbose = false }
             if MiniSessions then
-              MiniSessions.write(session_name,session_opts)
-              MiniSessions.write("latest",{verbose = false}) -- save the latest work
+              MiniSessions.write(session_name)
+              MiniSessions.write("latest") -- save the latest work
             end
           end
         end,
@@ -78,7 +78,7 @@ return {
         end,
         desc = "Read 'latest' session",
       },
-    }, 
+    },
   },
 
   -- -- Persistence sessions

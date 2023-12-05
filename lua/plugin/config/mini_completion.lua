@@ -1,11 +1,11 @@
 return function()
   -- local opts = {}
   local opts = {
-      delay = { completion = 50, info = 100, signature = 50 },
-      window = {
-        info = { height = 25, width = 80, border = 'shadow' },
-        signature = { height = 25, width = 80, border = 'rounded' },
-      },
+    delay = { completion = 50, info = 100, signature = 50 },
+    window = {
+      info = { height = 25, width = 80, border = "shadow" },
+      signature = { height = 25, width = 80, border = "rounded" },
+    },
   }
   --local opts = {
   --  -- Delay (debounce type, in ms) between certain Neovim event and action.
