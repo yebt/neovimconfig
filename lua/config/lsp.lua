@@ -183,3 +183,29 @@ kmset('n', '<leader>E', ':TroubleToggle document_diagnostics<CR>', { silent = tr
 --------------
 --- AUTOCMD
 ---
+vim.api.nvim_create_autocmd('LspAttach', {
+  group =vim.api.nvim_create_augroup('_UserLspAttachConfig',{}),
+  callback = function(env)
+
+    --- VARS
+    local bufnr = env.buf
+    local clientAttached  = vim.lsp.get_client_by_id(env.data.client_id)
+    --- CONFIGS
+    if clientAttached.server_capabilities.completionProvider then
+      vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+    end
+    if clientAttached.server_capabilities.definitionProvider then
+      vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
+    end
+
+    --- MAPS
+    vim.keymap.set(
+    'n',
+    '<leader>ca',
+    ':Lspsaga code_action<CR>',
+    { silent = true, buffer = bufnr, desc = 'LSP: Code action' }
+    )
+
+  end
+})
+

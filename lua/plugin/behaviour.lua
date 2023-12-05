@@ -32,21 +32,23 @@ return {
             local basename = cwd:match("[^/]+$")
             local path = cwd:gsub("/", "%%")
             local session_name = basename .. " (" .. path .. ")"
-
-            MiniSessions.write(session_name)
-            MiniSessions.write("latest") -- save the latest work
+            local session_opts = {verbose = {write = false}}
+            if MiniSessions then
+              MiniSessions.write(session_name,session_opts)
+              MiniSessions.write("latest",{verbose = false}) -- save the latest work
+            end
           end
         end,
       })
     end,
     config = require("plugin.config.mini_sessions"),
     keys = {
-      {
-        "<leader>ST",
-        function()
-          vim.notify(vim.inspect(MiniSessions.detected))
-        end,
-      },
+      -- {
+      --   "<leader>ST",
+      --   function()
+      --     vim.notify(vim.inspect(MiniSessions.detected))
+      --   end,
+      -- },
       {
         "<leader>SS",
         function()
@@ -76,7 +78,7 @@ return {
         end,
         desc = "Read 'latest' session",
       },
-    },
+    }, 
   },
 
   -- -- Persistence sessions
