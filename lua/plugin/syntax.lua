@@ -30,7 +30,7 @@ return {
   -- Context Comment String
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
-    event="VeryLazy",
+    event = "VeryLazy",
     opts = {
       -- enable_autocmd = false,
     },
