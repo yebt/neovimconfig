@@ -1,6 +1,8 @@
 return function()
   -- Setup language servers.
   local lspconfig = require("lspconfig")
+  require('lspconfig').tailwindcss.setup { }
+
 
   -- lspconfig.pyright.setup({})
   -- lspconfig.tsserver.setup({})
