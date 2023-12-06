@@ -5,6 +5,7 @@ return {
   --   "echasnovski/mini.completion",
   --   version = false,
   --   lazy = false,
+  --   REQURE: set iskeyword+=- to load complete word in autompletions
   --   event = "InsertEnter",
   --   config = require("plugin.config.mini_completion"),
   -- },
