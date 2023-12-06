@@ -23,6 +23,7 @@ return {
     "nvimtools/none-ls.nvim",
   },
   -- SLPSAGA
+
   -- Notifications
   {
     "j-hui/fidget.nvim",
