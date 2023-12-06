@@ -39,7 +39,12 @@ return {
   -- Statusline
   {
     "sontungexpt/sttusline",
-    event = { "VeryLazy", "BufEnter" },
+    branch = "table_version",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    -- event = { "VeryLazy", "BufEnter" },
+    event = { "VeryLazy" },
     config = require("plugin.config.sttusline"),
   },
 }
