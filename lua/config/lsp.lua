@@ -198,12 +198,49 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     --- MAPS
-    vim.keymap.set(
-      "n",
-      "<leader>ca",
-      ":Lspsaga code_action<CR>",
-      { silent = true, buffer = bufnr, desc = "LSP: Code action" }
-    )
+    -- vim.keymap.set(
+    --   "n",
+    --   "<leader>ca",
+    --   ":Lspsaga code_action<CR>",
+    --   { silent = true, buffer = bufnr, desc = "LSP: Code action" }
+    -- )
+
+      -- "textDocument/codeLens",
+      -- "window/logMessage",
+      -- "textDocument/completion",
+      -- "textD ocument/declaration",
+      -- "window/showMessageRequest",
+      -- "textDocument/diagnostic",
+      -- "wi ndow/workDoneProgress/create",
+      -- "workspace/applyEdit",
+      -- "textDocument/documentHighl ight",
+      -- "workspace/configuration",
+      -- "textDocument/documentSymbol",
+      -- "hover",
+      -- "textDo cument/implementation",
+      -- "textDocument/inlayHint",
+      -- "workspace/executeCommand",
+      -- "wo rkspace/inlayHint/refresh",
+      -- "workspace/semanticTokens/refresh",
+      -- "workspace/symbol ",
+      -- "textDocument/publishDiagnostics",
+      -- "callHierarchy/outgoingCalls",
+      -- "client/regi sterCapability",
+      -- "client/unregisterCapability",
+      -- "textDocument/references",
+      -- "textD ocument/rename",
+      -- "workspace/workspaceFolders",
+      -- "signature_help",
+      -- "textDocument/si gnatureHelp",
+      -- "$/progress",
+      -- "window/showDocument",
+      -- "window/showMessage",
+      -- "textDoc ument/rangeFormatting",
+      -- "textDocument/formatting",
+      -- "textDocument/hover",
+      -- "textDoc ument/definition",
+      -- "textDocument/typeDefinition",
+      -- "callHierarchy/incomingCalls",
   end,
 })
 
