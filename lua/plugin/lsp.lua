@@ -5,7 +5,7 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
     -- event = "VeryLazy",
-    config = require("plugin.config.lsp"),
+    -- config = require("plugin.config.lsp"),
   },
 
   -- MSON
