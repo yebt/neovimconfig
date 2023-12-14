@@ -89,7 +89,7 @@ return {
   -- Flash
   {
     "folke/flash.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     ---@type Flash.Config
     opts = {},
     -- stylua: ignore
