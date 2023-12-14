@@ -2,6 +2,7 @@ return function()
   local lspconfig = require("lspconfig")
   local mason = require("mason")
   local masonlsp = require("mason-lspconfig")
+
   mason.setup({
     ui = {
       icons = {
@@ -17,6 +18,7 @@ return function()
     automatic_installation = false,
     handlers = {},
   })
+
   masonlsp.setup_handlers({
     -- The first entry (without a key) will be the default handler
     -- and will be called for each installed server that doesn't have
