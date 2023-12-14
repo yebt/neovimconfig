@@ -7,6 +7,11 @@ return {
     -- event = "VeryLazy",
     -- config = require("plugin.config.lsp"),
   },
+  
+  -- NULL
+  {
+    "nvimtools/none-ls.nvim",
+  },
 
   -- MSON
   {
@@ -18,10 +23,7 @@ return {
     },
     config = require("plugin.config.mason"),
   },
-  -- NULL
-  {
-    "nvimtools/none-ls.nvim",
-  },
+
   -- SLPSAGA
 
   -- Notifications
