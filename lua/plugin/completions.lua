@@ -21,11 +21,36 @@ return {
   --
   {
     "Exafunction/codeium.vim",
-    event = { "VeryLazy", "BufEnter" },
+    -- event = { "VeryLazy", "BufEnter" },
+    event = {"InsertEnter"},
     -- init = function()
     --   vim.g.codeium_disable_bindings = 1
     -- end
     config = function()
+
+      ----
+      --vim.keymap.set("i", "<C-g>", function()
+      --  return vim.fn["codeium#Accept"]()
+      --end, { expr = true })
+      ----
+      --vim.keymap.set("i", "<c-;>", function()
+      --  return vim.fn["codeium#CycleCompletions"](1)
+      --end, { expr = true })
+      ----
+      --vim.keymap.set("i", "<c-,>", function()
+      --  return vim.fn["codeium#CycleCompletions"](-1)
+      --end, { expr = true })
+      ----
+      --vim.keymap.set("i", "<c-x>", function()
+      --  return vim.fn["codeium#Clear"]()
+      --end, { expr = true })
+
+
+      -- <M-Bslash> (alt + altgr + ')
+      -- 
+      -- <M-]> (ctrl + shift + } )
+
+      --  (ctrl + shift + } )
       -- Clear current suggestion 	codeium#Clear() 	<C-]>
       -- Next suggestion 	codeium#CycleCompletions(1) 	<M-]>
       -- Previous suggestion 	codeium#CycleCompletions(-1) 	<M-[>
