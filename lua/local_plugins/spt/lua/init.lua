@@ -22,12 +22,12 @@ M.suscribe = function(callback, conditional, priority, once,opts )
   table.sort(M.catons, function(a,b) return a.priority > b.priority end)
 end
 
-M.setup = function()
+M.setup = function(opts)
   _G.supertabSuscribe = M.suscribe
 
   local opts = {noremap = true, silent = true, expr = true}
   vim.keymap.set ("i", "<tab>", function()
-    for key,value in pairs (M.actions)
+    for key,value in pairs (M.actions) do
     end
     return "<tab>"
   end, opts)
