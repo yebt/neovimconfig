@@ -23,7 +23,23 @@ require("lazy").setup({
     cond = nil, ---@type boolean|fun(self:LazyPlugin):boolean|nil
     -- version = "*", -- enable this to try installing the latest stable versions of plugins
   },
-  spec = "plugin",
+  -- spec = "plugin",
+  spec = {
+    {
+      "supertab",
+      dir ="spt",
+      -- opts ={},
+      config = true,
+      lazy = false,
+      dev = true
+    },
+    {import = "plugin"}
+  },
+  dev = {
+    path = vim.fn.stdpath("config") .. "/lua/local_plugins",
+    patterns = {}, -- For example {"folke"}
+    fallback = false, -- Fallback to git when local plugin doesn't exist
+  },
   checker = {
     -- automatically check for plugin updates
     enabled = false,
