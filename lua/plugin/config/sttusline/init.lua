@@ -64,7 +64,7 @@ return function()
               return vim.fn["codeium#Enabled"]()
             end, {})
             if not load then
-              return "-"
+        return "-"
             end
             local status = vim.fn["codeium#GetStatusString"]()
             return status
@@ -92,6 +92,17 @@ return function()
         end,
         on_highlight = function(configs, space) end,
       },
+      -- {
+      --   name ="lazy_updates",
+      --   event = {}, 
+      --   user_event = { "VeryLazy"},
+      --   timing = true, -- The component will be update every time interval
+      --   lazy = true,
+      --   configs = {
+      --     icon = "󰏔"
+      --   },
+        
+      -- },
       "indent",
       -- "encoding",
       "pos-cursor",
