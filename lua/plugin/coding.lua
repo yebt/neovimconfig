@@ -14,7 +14,10 @@ return {
     version = false,
     config = require("plugin.config.mini_splitjoin"),
     keys = {
-      { "gS" },
+      {
+        "gS",
+        desc="Toggle split"
+      },
     },
   },
 
