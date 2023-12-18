@@ -7,7 +7,7 @@ M.actions = {}
 -- priority nil|(number)
 -- once nil|(boolean)
 -- opts nil|(table)
-M.suscribe = function(callback, conditional, priority, once)
+M.suscribeFn = function(callback, conditional, priority, once)
 	priority = priority or 0
 	once = once or false
 	-- opts = opts or {}
@@ -19,13 +19,24 @@ M.suscribe = function(callback, conditional, priority, once)
 		onece = once,
 		-- opts = opts,
 	}
-	table.sort(M.catons, function(a, b)
+	table.sort(M.actions, function(a, b)
 		return a.priority > b.priority
 	end)
 end
 
+M.suscribeTable = function(tableS)
+	local tableR = vim.tabl_extend("force", {
+		conditional = false,
+		priority = 0,
+		once = false,
+	}, tableS)
+	M.suscribeFn(tableR.callback, tableR.conditional, tableR.priority, tableR.once)
+	-- tableS.priority = tableS.priority or 0
+	-- tableS.priority = tableS.priority or 0
+end
+
 M.setup = function(config)
-	_G.supertabSuscribe = M.suscribe
+	_G.SpSuscribeFn = M.suscribeFn
 
 	local opts = { noremap = true, silent = true, expr = true }
 	vim.keymap.set("i", "<tab>", function()
@@ -33,13 +44,15 @@ M.setup = function(config)
 			if action.caleld and action.once then
 				break
 			end
-			if not (type(action.conditional) == "function" and action.conditional()) then
+			local typeConditinal = type(action.conditional)
+			if
+				not (
+					(typeConditinal == "function" and action.conditional())
+					or (typeConditinal == "boolean" and action.conditional)
+				)
+			then
 				break
 			end
-			if not (type(action.conditional) =='boolean' and action.conditional) then
-				break
-			end
-			-- opts = vim.tbl_extend(opts, action.opts or {})
 			return action.callback()
 		end
 		return "<tab>"
