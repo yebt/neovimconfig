@@ -5,7 +5,7 @@ return {
   --   "echasnovski/mini.completion",
   --   version = false,
   --   lazy = false,
-  --   REQURE: set iskeyword+=- to load complete word in autompletions
+  --   -- REQURE: set iskeyword+=- to load complete word in autompletions
   --   event = "InsertEnter",
   --   config = require("plugin.config.mini_completion"),
   -- },
@@ -22,33 +22,48 @@ return {
   {
     "Exafunction/codeium.vim",
     -- event = { "VeryLazy", "BufEnter" },
-    event = {"InsertEnter"},
-    -- init = function()
-    --   vim.g.codeium_disable_bindings = 1
-    -- end
+    event = { "InsertEnter" },
+    init = function()
+      vim.g.codeium_disable_bindings = 1
+    end,
+    keys = {
+      {
+        "<C-]>",
+        function()
+          vim.fn["codeium#Clear"]()
+        end,
+        mode = "i",
+      },
+      {
+        "<M-,>",
+        function()
+          vim.fn["codeium#CycleCompletions"](-1)
+        end,
+        mode = "i",
+      },
+      {
+        "<M-.>",
+        function()
+          vim.fn["codeium#CycleCompletions"](1)
+        end,
+        mode = "i",
+      },
+      {
+        "<M-Bslash>",
+        function()
+          vim.fn["codeium#CycleCompletions"](1)
+        end,
+        mode = "i",
+      },
+    },
     config = function()
-
-      ----
-      --vim.keymap.set("i", "<C-g>", function()
-      --  return vim.fn["codeium#Accept"]()
-      --end, { expr = true })
-      ----
-      --vim.keymap.set("i", "<c-;>", function()
-      --  return vim.fn["codeium#CycleCompletions"](1)
-      --end, { expr = true })
-      ----
-      --vim.keymap.set("i", "<c-,>", function()
-      --  return vim.fn["codeium#CycleCompletions"](-1)
-      --end, { expr = true })
-      ----
-      --vim.keymap.set("i", "<c-x>", function()
-      --  return vim.fn["codeium#Clear"]()
-      --end, { expr = true })
-
-
-      -- <M-Bslash> (alt + altgr + ')
-      -- 
-      -- <M-]> (ctrl + shift + } )
+      if SpSuscribeFn and type(SpSuscribeFn) == "function" then
+        SpSuscribeFn(function()
+          return vim.fn["codeium#Accept"]()
+        end, function()
+          return vim.fn.exists("b:_codeium_completions") ~= 0
+        end, true)
+      end
 
       --  (ctrl + shift + } )
       -- Clear current suggestion 	codeium#Clear() 	<C-]>
@@ -56,20 +71,7 @@ return {
       -- Previous suggestion 	codeium#CycleCompletions(-1) 	<M-[>
       -- Insert suggestion 	codeium#Accept() 	<Tab>
       -- Manually trigger suggestion 	codeium#Complete() 	<M-Bslash>
-      --
-      -- Change '<C-g>' here to any keycode you like.
-      -- vim.keymap.set("i", "<C-g>", function()
-      --   return vim.fn["codeium#Accept"]()
-      -- end, { expr = true })
-      -- vim.keymap.set("i", "<c-;>", function()
-      --   return vim.fn["codeium#CycleCompletions"](1)
-      -- end, { expr = true })
-      -- vim.keymap.set("i", "<c-,>", function()
-      --   return vim.fn["codeium#CycleCompletions"](-1)
-      -- end, { expr = true })
-      -- vim.keymap.set("i", "<c-x>", function()
-      --   return vim.fn["codeium#Clear"]()
-      -- end, { expr = true })
+
     end,
   },
 }
