@@ -43,8 +43,8 @@ return {
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
-    -- event = { "VeryLazy", "BufEnter" },
-    event = { "VeryLazy" },
+    event = { "VeryLazy", "BufEnter" },
+    -- event = { "VeryLazy" },
     config = require("plugin.config.sttusline"),
   },
 }
