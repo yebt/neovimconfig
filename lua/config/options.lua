@@ -98,15 +98,17 @@ local configs = {
   },
   undodir = vim.fn.stdpath("state") .. "/undo",
   listchars = {
-    tab = "▸ ",
-    trail = "·",
-    precedes = "«",
-    extends = "»",
-    space = "⋅",
-    -- conceal
-    nbsp = "+",
-    eol = "↴",
+    -- tab = "▸ ",
+    tab = "|->",
+    -- trail = "·",
+    -- precedes = "«",
+    -- extends = "»",
+    -- space = "⋅",
+    -- -- conceal
+    -- nbsp = "+",
+    -- eol = "↴",
   },
+  list = true,
   fillchars = {
     diff = "╱",
     -- 
