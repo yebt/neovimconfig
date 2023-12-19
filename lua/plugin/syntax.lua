@@ -20,7 +20,7 @@ return {
     "andymass/vim-matchup",
     event = "VeryLazy",
     init = function()
-      -- vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
       -- vim.g.matchup_matchparen_stopline = 400
       vim.g.matchup_matchparen_deferred = 1
       vim.g.matchup_transmute_enabled = 1

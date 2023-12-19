@@ -109,16 +109,16 @@ return function()
       --     icon = "󰏔"
       --   },
 
-      -- -- },
-      -- {
-      --   "indent",
-      --   {
-      --     update = function() 
-      --       local usage = vim.api.nvim_buf_get_option(0, 'expandtab') and 'SPC' or 'TAB'
-      --       -- return "Tab: " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. "" end,
-      --       return usage .. ":" .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. "" end,
-      --   }
       -- },
+      {
+        "indent",
+        -- {
+        --   update = function() 
+        --     local usage = vim.api.nvim_buf_get_option(0, 'expandtab') and 'SPC' or 'TAB'
+        --     -- return "Tab: " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. "" end,
+        --     return usage .. ":" .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. "" end,
+        -- }
+      },
       -- "encoding",
       "pos-cursor",
       -- "pos-cursor-progress",

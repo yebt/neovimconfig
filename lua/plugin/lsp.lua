@@ -3,7 +3,7 @@ return {
   -- lspconfig
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
+    -- lazy = false,
     -- event = "VeryLazy",
     -- config = require("plugin.config.lsp"),
   },
@@ -16,7 +16,8 @@ return {
   -- MSON
   {
     "williamboman/mason.nvim",
-    lazy = false,
+    -- lazy = false,
+    event = {"VeryLazy"},
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",

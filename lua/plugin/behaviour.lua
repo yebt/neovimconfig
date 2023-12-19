@@ -4,7 +4,8 @@ return {
   -- Automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
   {
     "tpope/vim-sleuth",
-    lazy = false,
+    -- lazy = false,
+    event = "VeryLazy",
   },
 
   -- mini sessions
