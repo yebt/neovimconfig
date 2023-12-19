@@ -30,8 +30,8 @@ return {
   {
     "j-hui/fidget.nvim",
     -- event = { "LspAttach" },
-    lazy = false,
-    event = { "VimEnter","LspAttach" },
+    -- lazy = false,
+    -- event = { "VimEnter","LspAttach" },
     config = require("plugin.config.fidget"),
   },
   -- {
