@@ -42,7 +42,14 @@ return function()
     },
     components = {
       "git-branch",
-      "filename",
+      -- {
+      --   "filename",
+      --   {
+      --     configs = {
+      --       path=3
+      --     }
+      --   }
+      -- },
       "git-diff",
       "%=",
       "diagnostics",
@@ -60,11 +67,11 @@ return function()
         lazy = true,
         space = {
           get_text = function()
-            local load, result = pcall(function(p)
+            local load, _ = pcall(function()
               return vim.fn["codeium#Enabled"]()
             end, {})
             if not load then
-        return "-"
+              return "-"
             end
             local status = vim.fn["codeium#GetStatusString"]()
             return status
@@ -74,18 +81,18 @@ return function()
         padding = { left = 0, right = 1 }, -- { left = 1, right = 1 }
         colors = {
           { fg = "#ececec", bg = "#09b6a2", bold = true },
-          { fg = "#53131E"}
+          { fg = "#53131E" },
         }, -- { fg = colors.black, bg = colors.white }
         update = function(configs, space)
           local gt = space.get_text()
-          local str1, str2 = "",""
-          if gt == "--" or gt == '' or gt == "OFF" then
+          local str1, str2 = "", ""
+          if gt == "--" or gt == "" or gt == "OFF" then
             str1 = "OFF"
           else
             str2 = gt
           end
-          
-          return {str2, str1}
+
+          return { str2, str1 }
         end,
         condition = function(config, space)
           return true
@@ -94,20 +101,80 @@ return function()
       },
       -- {
       --   name ="lazy_updates",
-      --   event = {}, 
+      --   event = {},
       --   user_event = { "VeryLazy"},
       --   timing = true, -- The component will be update every time interval
       --   lazy = true,
       --   configs = {
       --     icon = "󰏔"
       --   },
-        
+
+      -- -- },
+      -- {
+      --   "indent",
+      --   {
+      --     update = function() 
+      --       local usage = vim.api.nvim_buf_get_option(0, 'expandtab') and 'SPC' or 'TAB'
+      --       -- return "Tab: " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. "" end,
+      --       return usage .. ":" .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. "" end,
+      --   }
       -- },
-      "indent",
       -- "encoding",
       "pos-cursor",
       -- "pos-cursor-progress",
-      "mode",
+      {
+        "mode",
+        {
+          configs = {
+            modes = {
+              ["n"] = { "N", "STTUSLINE_NORMAL_MODE" },
+              ["no"] = { "N (no)", "STTUSLINE_NORMAL_MODE" },
+              ["nov"] = { "N (nov)", "STTUSLINE_NORMAL_MODE" },
+              ["noV"] = { "N (noV)", "STTUSLINE_NORMAL_MODE" },
+              ["noCTRL-V"] = { "N", "STTUSLINE_NORMAL_MODE" },
+              ["niI"] = { "N i", "STTUSLINE_NORMAL_MODE" },
+              ["niR"] = { "N r", "STTUSLINE_NORMAL_MODE" },
+              ["niV"] = { "N v", "STTUSLINE_NORMAL_MODE" },
+
+              ["nt"] = { "T", "STTUSLINE_NTERMINAL_MODE" },
+              ["ntT"] = { "T (ntT)", "STTUSLINE_NTERMINAL_MODE" },
+
+              ["v"] = { "V", "STTUSLINE_VISUAL_MODE" },
+              ["vs"] = { "VC (Ctrl O)", "STTUSLINE_VISUAL_MODE" },
+              ["V"] = { "VL", "STTUSLINE_VISUAL_MODE" },
+              ["Vs"] = { "VL", "STTUSLINE_VISUAL_MODE" },
+              [""] = { "VB", "STTUSLINE_VISUAL_MODE" },
+
+              ["i"] = { "I", "STTUSLINE_INSERT_MODE" },
+              ["ic"] = { "I (cmp)", "STTUSLINE_INSERT_MODE" },
+              ["ix"] = { "I cmp", "STTUSLINE_INSERT_MODE" },
+
+              ["t"] = { "T", "STTUSLINE_TERMINAL_MODE" },
+              ["!"] = { "SHELL", "STTUSLINE_TERMINAL_MODE" },
+
+              ["R"] = { "R", "STTUSLINE_REPLACE_MODE" },
+              ["Rc"] = { "R (Rc)", "STTUSLINE_REPLACE_MODE" },
+              ["Rx"] = { "REPLACEa (Rx)", "STTUSLINE_REPLACE_MODE" },
+              ["Rv"] = { "V-R", "STTUSLINE_REPLACE_MODE" },
+              ["Rvc"] = { "V-R (Rvc)", "STTUSLINE_REPLACE_MODE" },
+              ["Rvx"] = { "V-R (Rvx)", "STTUSLINE_REPLACE_MODE" },
+
+              ["s"] = { "S", "STTUSLINE_SELECT_MODE" },
+              ["S"] = { "S-L", "STTUSLINE_SELECT_MODE" },
+              [""] = { "S-B", "STTUSLINE_SELECT_MODE" },
+
+              ["c"] = { "C", "STTUSLINE_COMMAND_MODE" },
+              ["cv"] = { "C", "STTUSLINE_COMMAND_MODE" },
+              ["ce"] = { "C", "STTUSLINE_COMMAND_MODE" },
+
+              ["r"] = { "PROMPT", "STTUSLINE_CONFIRM_MODE" },
+              ["rm"] = { "MORE", "STTUSLINE_CONFIRM_MODE" },
+              ["r?"] = { "CONFIRM", "STTUSLINE_CONFIRM_MODE" },
+              ["x"] = { "CONFIRM", "STTUSLINE_CONFIRM_MODE" },
+            },
+          },
+        },
+      },
       -- Datetime
       -- cDatetime
     },
