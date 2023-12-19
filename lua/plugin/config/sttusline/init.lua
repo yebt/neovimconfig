@@ -99,17 +99,22 @@ return function()
         end,
         on_highlight = function(configs, space) end,
       },
-      -- {
-      --   name ="lazy_updates",
-      --   event = {},
-      --   user_event = { "VeryLazy"},
-      --   timing = true, -- The component will be update every time interval
-      --   lazy = true,
-      --   configs = {
-      --     icon = "󰏔"
-      --   },
-
-      -- },
+      {
+        name ="lazy_updates",
+        event = {},
+        user_event = { "VeryLazy"},
+        timing = true, -- The component will be update every time interval
+        lazy = true,
+        configs = {
+        },
+        update = function(configs, space)
+          local ok, lst = pcall(require, "lazy.status")
+          if not ok or not (lst.has_updates()) then
+            return ""
+          end
+          return " " .. require("lazy.status").updates()
+        end
+      },
       {
         "indent",
         -- {
