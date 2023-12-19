@@ -4,6 +4,9 @@ local autocmd = vim.api.nvim_create_autocmd
 local async = require("plenary.async")
 local Job = require("plenary.job")
 
+local fn = vim.fn
+local get_option = vim.api.nvim_buf_get_option
+
 -----------------------------------------
 function prt(val)
   -- print(val)
@@ -72,5 +75,35 @@ autocmd({ "VimEnter" }, {
     --     end
     --   end,
     -- }):start() -- or start()
+  end,
+})
+
+autocmd({ "VimEnter", "BufEnter", "BufAdd" }, {
+  desc = "Add icon to file",
+  -- pattern = { '*.log' },
+  -- command = 'set filetype=log',
+  callback = function()
+    local ok, devicons = pcall(require, "nvim-web-devicons")
+    if not ok then
+      return
+    end
+    local filename = vim.fn.expand("%:t")
+    local filetype = vim.bo.filetype
+
+    local icon, color_icon = nil, nil
+    icon, color_icon = devicons.get_icon_color(filename, vim.fn.expand("%:e"))
+    -- if icon then
+    --   vim.api.nvim_set_hl(0, "DevIcon" .. vim.fn.fnamemodify(filename, ":e"), { fg = color_icon })
+    --   vim.cmd("syntax match DevIcon" .. vim.fn.fnamemodify(filename, ":e") .. " /" .. icon .. "/")
+    -- else
+    --   vim.api.nvim_set_hl(0, "DevIcon" .. vim.fn.fnamemodify(filename, ":e"), {})
+    --   vim.cmd("syntax match DevIcon" .. vim.fn.fnamemodify(filename, ":e") .. " /" .. filename .. "/")
+    -- end
+    vim.b.filepeicon = icon
+    -- uppercase the firs letter of the filetype
+    local first_letter = string.upper(string.sub(filetype, 1, 1))
+    -- vim.b.filepeicon = first_letter .. string.sub(filetype, 2)
+    vim.b.filepeiconcolor = "%#DevIcon" .. first_letter .. string.sub(filetype, 2) .. "#"
+
   end,
 })
