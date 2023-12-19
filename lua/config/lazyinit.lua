@@ -30,7 +30,8 @@ require("lazy").setup({
       dir ="spt",
       -- opts ={},
       config = true,
-      lazy = false,
+      -- lazy = false,
+      event={"VeryLazy"},
       dev = true
     },
     {import = "plugin"}
