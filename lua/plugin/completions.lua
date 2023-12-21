@@ -18,7 +18,17 @@ return {
   -- },
 
   -- nvim cmp
-  --
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+    },
+  },
+
+  -- AI Codeium
   {
     "Exafunction/codeium.vim",
     -- event = { "VeryLazy", "BufEnter" },
@@ -71,10 +81,6 @@ return {
       -- Previous suggestion 	codeium#CycleCompletions(-1) 	<M-[>
       -- Insert suggestion 	codeium#Accept() 	<Tab>
       -- Manually trigger suggestion 	codeium#Complete() 	<M-Bslash>
-
     end,
   },
-
-
-
 }
