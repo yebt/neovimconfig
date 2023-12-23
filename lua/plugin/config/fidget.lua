@@ -1,10 +1,17 @@
 return function()
   local fidget = require("fidget")
 
-  local opts = {}
+  local opts = {
+    notification = {
+      window = {
+        winblend = 10,
+        border = "single",
+      },
+    },
+  }
 
   fidget.setup(opts)
-  
+
   -- fidget.setup({
   --   -- Options related to LSP progress subsystem
   --   progress = {
@@ -114,4 +121,7 @@ return function()
   --   fidget.notify(nil, vim.log.levels.ERROR, { annote = "bottom text", key = "foobar" })
   --   fidget.notify("... and overwriting notifications.", vim.log.levels.WARN, { annote = "YOUR AD HERE" })
   -- end)
+  vim.notify = function(...)
+    fidget.notify(...)
+  end
 end
