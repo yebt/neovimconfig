@@ -5,7 +5,7 @@ return function()
     notification = {
       window = {
         winblend = 10,
-        border = "single",
+        -- border = "single",
       },
     },
   }
