@@ -26,7 +26,13 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       -- "hrsh7th/cmp-cmdline",
-      "L3MON4D3/LuaSnip",
+      {
+        "L3MON4D3/LuaSnip",
+        version = "2.*",
+        build = "make install_jsregexp",
+        dependencies = {"rafamadriz/friendly-snippets"},
+        config = require("plugin.config.luasnip"),
+      },
       "saadparwaiz1/cmp_luasnip"
     },
     event = "InsertEnter",
