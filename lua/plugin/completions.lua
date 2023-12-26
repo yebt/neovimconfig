@@ -30,7 +30,9 @@ return {
         "L3MON4D3/LuaSnip",
         version = "2.*",
         build = "make install_jsregexp",
-        dependencies = {"rafamadriz/friendly-snippets"},
+        dependencies = {
+          "rafamadriz/friendly-snippets"
+        },
         config = require("plugin.config.luasnip"),
       },
       "saadparwaiz1/cmp_luasnip"
