@@ -32,6 +32,16 @@ return function()
       end,
     },
 
+    completion = {
+      autocomplete = {
+        types.cmp.TriggerEvent.TextChanged,
+      },
+      completeopt = 'menu,menuone,noselect',
+      keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
+      keyword_length = 1,
+    },
+
+
     formatting = {
       expandable_indicator = true,
       fields = { "abbr", "kind", "menu" },
@@ -46,7 +56,14 @@ return function()
       disallow_partial_matching = false,
       disallow_prefix_unmatching = false,
     },
-    sources = {},
+
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' }, -- For luasnip users.
+    }, {
+      { name = 'buffer' },
+    }),
+
 
     confirmation = {
       default_behavior = types.cmp.ConfirmBehavior.Insert,
