@@ -33,7 +33,7 @@ return {
         dependencies = {
           "rafamadriz/friendly-snippets"
         },
-        config = require("plugin.config.luasnip"),
+        config = require("plugin.config.luasnipc"),
       },
       "saadparwaiz1/cmp_luasnip"
     },
