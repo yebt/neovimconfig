@@ -1,6 +1,7 @@
 return function()
   require("luasnip.loaders.from_vscode").lazy_load()
   local util = require("luasnip.util.util")
+  local types = require("luasnip.util.types")
   local node_util = require("luasnip.nodes.util")
   local ls = require("luasnip")
 
@@ -83,26 +84,57 @@ return function()
     end,
   })
 
-  local has_words_before = function()
-    unpack = unpack or table.unpack
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-  end
+  --   local has_words_before = function()
+  --     unpack = unpack or table.unpack
+  --     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  --     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  --   end
 
-  vim.keymap.set({"i", "s"}, "<C-j>", function()
-    if ls.expand_or_jumpable() then
-      ls.expand_or_jump()
-      return ""
-    end
-    return "<C-j>"
-  end, {expr = true})
+  --   vim.keymap.set({"i", "s"}, "<C-j>", function()
+  --     if ls.expand_or_jumpable() then
+  --       ls.expand_or_jump()
+  --       return ""
+  --     end
+  --     return "<C-j>"
+  --   end, {expr = true})
 
-  vim.keymap.set({"i", "s"}, "<C-k>", function()
-    if ls.jumpable(-1) then
-      ls.jump(-1)
-      return ""
+  --   vim.keymap.set({"i", "s"}, "<C-k>", function()
+  --     if ls.jumpable(-1) then
+  --       ls.jump(-1)
+  --       return ""
+  --     end
+  --     return "<C-j>"
+  --   end, {expr = true})
+
+  ls.config.setup({
+    ext_opts = {
+      [types.choiceNode] = {
+        active = {
+          virt_text = { { "●", "Constant" } },
+        },
+      },
+      [types.insertNode] = {
+        active = {
+          virt_text = { { "●", "Operator" } },
+        },
+      },
+    },
+  })
+
+  vim.keymap.set({ "i" }, "<C-K>", function()
+    ls.expand()
+  end, { silent = true })
+  vim.keymap.set({ "i", "s" }, "<C-L>", function()
+    ls.jump(1)
+  end, { silent = true })
+  vim.keymap.set({ "i", "s" }, "<C-J>", function()
+    ls.jump(-1)
+  end, { silent = true })
+
+  vim.keymap.set({ "i", "s" }, "<C-E>", function()
+    if ls.choice_active() then
+      ls.change_choice(1)
     end
-    return "<C-j>"
-  end, {expr = true})
+  end, { silent = true })
 
 end
