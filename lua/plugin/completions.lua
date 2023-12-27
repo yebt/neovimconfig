@@ -35,7 +35,9 @@ return {
         },
         config = require("plugin.config.luasnipc"),
       },
-      "saadparwaiz1/cmp_luasnip"
+      "saadparwaiz1/cmp_luasnip",
+      { 'jackieaskins/cmp-emmet', build = 'npm run release'  }
+
     },
     event = "InsertEnter",
     config = require("plugin.config.cmp"),
