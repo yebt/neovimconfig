@@ -7,7 +7,7 @@ return {
     -- event = "VeryLazy",
     -- config = require("plugin.config.lsp"),
   },
-  
+
   -- NULL
   {
     "nvimtools/none-ls.nvim",
@@ -17,7 +17,7 @@ return {
   {
     "williamboman/mason.nvim",
     -- lazy = false,
-    event = {"VeryLazy"},
+    event = { "VeryLazy" },
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",
@@ -56,11 +56,38 @@ return {
   -- },
 
   -- LSPSAGA
+  {
+    "nvimdev/lspsaga.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter", -- optional
+      "nvim-tree/nvim-web-devicons", -- optional
+    },
+    event = "LspAttach",
+    config = require("plugin.config.lspsagac"),
+    keys = {
+      {"<C-j>", "<cmd>Lspsaga term_toggle<CR>", desc = "Toggle terminal"},
+      {"<C-j>", "<cmd>Lspsaga term_toggle<CR>", mode="t", desc = "Toggle terminal"},
+    },
+
+  },
+  -- TROUBLE
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = {
+      "Trouble",
+      "TroubleClose",
+      "TroubleToggle",
+      "TroubleRefresh",
+    }
+  },
   -- SIGNATURE
   {
     "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
     opts = {},
-    config = function(_, opts) require'lsp_signature'.setup(opts) end
-  }
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
+    end,
+  },
 }
