@@ -1,2 +1,8 @@
 -- HTML support
-return {}
+return {
+  --
+  -- {
+  --   "mattn/emmet-vim",
+  --   event = "VeryLazy",
+  -- }
+}
