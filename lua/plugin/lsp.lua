@@ -54,4 +54,13 @@ return {
   --     zindex = 50, -- The zindex to use for the floating window. Note that changing this value may cause visual bugs with other windows overlapping the notifier window.
   --   },
   -- },
+
+  -- LSPSAGA
+  -- SIGNATURE
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts) require'lsp_signature'.setup(opts) end
+  }
 }
