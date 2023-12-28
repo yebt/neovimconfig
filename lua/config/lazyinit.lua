@@ -25,16 +25,16 @@ require("lazy").setup({
   },
   -- spec = "plugin",
   spec = {
-    {
-      "supertab",
-      dir ="spt",
-      -- opts ={},
-      config = true,
-      -- lazy = false,
-      event={"VeryLazy"},
-      dev = true
-    },
-    {import = "plugin"}
+    -- {
+    --   "supertab",
+    --   dir = "spt",
+    --   -- opts ={},
+    --   config = true,
+    --   -- lazy = false,
+    --   event = { "VeryLazy" },
+    --   dev = true,
+    -- },
+    { import = "plugin" },
   },
   dev = {
     path = vim.fn.stdpath("config") .. "/lua/local_plugins",
