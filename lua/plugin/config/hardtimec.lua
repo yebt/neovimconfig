@@ -1,10 +1,10 @@
-return function ()
+return function()
   local ok, hardtime = pcall(require, "hardtime")
   if not ok then
     return
   end
 
-  local opts =  {
+  local opts = {
     disable_mouse = false,
 
     -- Add "oil" to the disabled_filetypes
@@ -38,8 +38,13 @@ return function ()
       "qf",
       "oil",
       "undotree",
-   },
-
+    },
+    disabled_keys = {
+      ["<Up>"] = { "n", "i" },
+      ["<Down>"] = { "n", "i" },
+      ["<Left>"] = { "n", "i" },
+      ["<Right>"] = { "n", "i" },
+    },
   }
   hardtime.setup(opts)
 end
