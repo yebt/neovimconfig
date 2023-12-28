@@ -1,6 +1,8 @@
 return function()
   local table_get = function(t, id)
-    if type(id) ~= 'table' then return H.table_get(t, { id }) end
+    if type(id) ~= "table" then
+      return H.table_get(t, { id })
+    end
     local success, res = true, t
     for _, i in ipairs(id) do
       --stylua: ignore start
@@ -13,11 +15,10 @@ return function()
 
   -- local opts = {}
   local get_completion_word = function(item)
-  -- Completion word (textEdit.newText > insertText > label). This doesn't
-  -- support snippet expansion.
-  return table_get(item, { 'textEdit', 'newText' }) or item.insertText or item.label or ''
-
-end
+    -- Completion word (textEdit.newText > insertText > label). This doesn't
+    -- support snippet expansion.
+    return table_get(item, { "textEdit", "newText" }) or item.insertText or item.label or ""
+  end
   local opts = {
     delay = { completion = 50, info = 100, signature = 50 },
     lsp_completion = {
@@ -27,7 +28,9 @@ end
           return vim.startswith(get_completion_word(item), base) and item.kind ~= 15
         end, items)
 
-        table.sort(res, function(a, b) return (a.sortText or a.label) < (b.sortText or b.label) end)
+        table.sort(res, function(a, b)
+          return (a.sortText or a.label) < (b.sortText or b.label)
+        end)
 
         return res
       end,
