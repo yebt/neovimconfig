@@ -100,25 +100,24 @@ return function()
         on_highlight = function(configs, space) end,
       },
       {
-        name ="lazy_updates",
+        name = "lazy_updates",
         event = {},
-        user_event = { "VeryLazy"},
+        user_event = { "VeryLazy" },
         timing = true, -- The component will be update every time interval
         lazy = true,
-        configs = {
-        },
+        configs = {},
         update = function(configs, space)
           local ok, lst = pcall(require, "lazy.status")
           if not ok or not (lst.has_updates()) then
             return ""
           end
           return " " .. require("lazy.status").updates()
-        end
+        end,
       },
       {
         "indent",
         -- {
-        --   update = function() 
+        --   update = function()
         --     local usage = vim.api.nvim_buf_get_option(0, 'expandtab') and 'SPC' or 'TAB'
         --     -- return "Tab: " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. "" end,
         --     return usage .. ":" .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. "" end,
