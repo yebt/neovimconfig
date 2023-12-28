@@ -16,7 +16,7 @@ return {
     keys = {
       {
         "gS",
-        desc="Toggle split"
+        desc = "Toggle split",
       },
     },
   },

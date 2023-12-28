@@ -31,17 +31,35 @@ return {
         version = "2.*",
         build = "make install_jsregexp",
         dependencies = {
-          "rafamadriz/friendly-snippets"
+          "rafamadriz/friendly-snippets",
         },
         config = require("plugin.config.luasnipc"),
       },
       "saadparwaiz1/cmp_luasnip",
-      { 'jackieaskins/cmp-emmet', build = 'npm run release'  }
-
+      { "jackieaskins/cmp-emmet", build = "npm run release" },
     },
     event = "InsertEnter",
     config = require("plugin.config.cmp"),
-  },
+   },
+
+  -- EOP Blazingly fast, minimal lsp auto-completion and snippet plugin for neovim.
+  -- {
+  --   "nvimdev/epo.nvim",
+  --   dependencies = {
+  --     {
+  --       "L3MON4D3/LuaSnip",
+  --       version = "2.*",
+  --       build = "make install_jsregexp",
+  --       dependencies = {
+  --         "rafamadriz/friendly-snippets",
+  --       },
+  --       config = require("plugin.config.luasnipc"),
+  --     },
+  --   },
+  --   event = { "InsertEnter", "LspAttach", "VeryLazy" },
+  --   -- lazy = false,
+  --   config = require("plugin.config.epoc"),
+  -- },
 
   -- AI Codeium
   {
@@ -49,15 +67,17 @@ return {
     -- event = { "VeryLazy", "BufEnter" },
     event = { "InsertEnter" },
     init = function()
-      vim.g.codeium_disable_bindings = 1
+      -- vim.g.codeium_disable_bindings = 1
     end,
     keys = {
       {
-        "<C-]>",
+        "<C-g>",
         function()
-          vim.fn["codeium#Clear"]()
+          return vim.fn["codeium#Accept"]()
         end,
         mode = "i",
+        expr = true,
+        silent = true,
       },
       {
         "<M-,>",
@@ -80,22 +100,31 @@ return {
         end,
         mode = "i",
       },
+      {
+        "<M-Right>",
+        function()
+          vim.fn["codeium#Accept"]()
+        end,
+        mode = "i",
+      },
     },
-    config = function()
-      if SpSuscribeFn and type(SpSuscribeFn) == "function" then
-        SpSuscribeFn(function()
-          return vim.fn["codeium#Accept"]()
-        end, function()
-          return vim.fn.exists("b:_codeium_completions") ~= 0
-        end, true)
-      end
+    -- config = function()
+    --   if SpSuscribeFn and type(SpSuscribeFn) == "function" then
+    --     SpSuscribeFn(function()
+    --       return vim.fn["codeium#Accept"]()
+    --     end, function()
+    --       return vim.fn.exists("b:_codeium_completions") ~= 0 and vim.fn["codeium#Accept"]() ~= "\t"
+    --     end)
+    --   end
+      
 
-      --  (ctrl + shift + } )
-      -- Clear current suggestion 	codeium#Clear() 	<C-]>
-      -- Next suggestion 	codeium#CycleCompletions(1) 	<M-]>
-      -- Previous suggestion 	codeium#CycleCompletions(-1) 	<M-[>
-      -- Insert suggestion 	codeium#Accept() 	<Tab>
-      -- Manually trigger suggestion 	codeium#Complete() 	<M-Bslash>
-    end,
+    --   -- as of 0.5.0 sj wrote 
+    --   --  (ctrl + shift + } )
+    --   -- Clear current suggestion 	codeium#Clear() 	<C-]>
+    --   -- Next suggestion 	codeium#CycleCompletions(1) 	<M-]>
+    --   -- Previous suggestion 	codeium#CycleCompletions(-1) 	<M-[>
+    --   -- Insert suggestion 	codeium#Accept() 	<Tab>
+    --   -- Manually trigger suggestion 	codeium#Complete() 	<M-Bslash>
+    -- end,
   },
 }

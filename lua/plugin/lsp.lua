@@ -65,10 +65,9 @@ return {
     event = "LspAttach",
     config = require("plugin.config.lspsagac"),
     keys = {
-      {"<C-j>", "<cmd>Lspsaga term_toggle<CR>", desc = "Toggle terminal"},
-      {"<C-j>", "<cmd>Lspsaga term_toggle<CR>", mode="t", desc = "Toggle terminal"},
+      { "<C-j>", "<cmd>Lspsaga term_toggle<CR>", desc = "Toggle terminal" },
+      { "<C-j>", "<cmd>Lspsaga term_toggle<CR>", mode = "t", desc = "Toggle terminal" },
     },
-
   },
   -- TROUBLE
   {
@@ -79,7 +78,7 @@ return {
       "TroubleClose",
       "TroubleToggle",
       "TroubleRefresh",
-    }
+    },
   },
   -- SIGNATURE
   {
