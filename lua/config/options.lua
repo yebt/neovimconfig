@@ -78,7 +78,7 @@ local configs = {
   termguicolors = true,
   --
   showtabline = 2,
-  tabline=table.concat({
+  tabline = table.concat({
     "%#TabLine#",
     "%#TabLineSel#",
     " ",
@@ -91,8 +91,8 @@ local configs = {
     "%#TabLine#",
     "%#Constant#",
     "%h%m%r",
-    "%#TabLineFill#"
-  },''),
+    "%#TabLineFill#",
+  }, ""),
   --
   laststatus = 3, -- use 1 on global
   --

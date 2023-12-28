@@ -104,6 +104,5 @@ autocmd({ "VimEnter", "BufEnter", "BufAdd" }, {
     local first_letter = string.upper(string.sub(filetype, 1, 1))
     -- vim.b.filepeicon = first_letter .. string.sub(filetype, 2)
     vim.b.filepeiconcolor = "%#DevIcon" .. first_letter .. string.sub(filetype, 2) .. "#"
-
   end,
 })
